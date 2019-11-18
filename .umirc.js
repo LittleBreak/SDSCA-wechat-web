@@ -5,8 +5,9 @@ export default {
     {
       path: '/',
       component: '../layouts/index',
-      routes: [{ path: '/', component: '../pages/index' }],
+      routes: [{ path: '/', component: '../pages/index' },{ path: '/welcome', component: '../pages/Welcome/Welcome' }],
     },
+
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
