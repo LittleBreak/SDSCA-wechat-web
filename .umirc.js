@@ -5,9 +5,11 @@ export default {
     {
       path: '/',
       component: '../layouts/index',
-      routes: [{ path: '/', component: '../pages/index' },{ path: '/welcome', component: '../pages/Welcome/Welcome' }],
+      routes: [
+        { path: '/', component: '../pages/index' },
+        { path: '/welcome', component: '../pages/Welcome/Welcome' },
+      ],
     },
-
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
@@ -32,4 +34,11 @@ export default {
       },
     ],
   ],
+  proxy: {
+    '/api/': {
+      target: 'http://192.168.8.105:3001/',
+      changeOrigin: true,
+      // pathRewrite: { '^/api': '' },
+    },
+  },
 };

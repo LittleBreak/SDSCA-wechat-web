@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import styles from './Welcome.less';
 import { Button, Modal } from 'antd-mobile';
-
+import { connect } from 'dva';
 class Welcome extends Component {
   state = {
-    visible: false
-  }
-  showModal = (params) => {
-    this.setState({
-      visible: true
-    })
+    visible: false,
   };
-  onClose = (params) => {
+  showModal = params => {
     this.setState({
-      visible: false
-    })
+      visible: true,
+    });
+  };
+  onClose = params => {
+    this.setState({
+      visible: false,
+    });
   };
 
   // onWrapTouchStart = (e) => {
@@ -28,10 +28,16 @@ class Welcome extends Component {
   //   }
   // }
 
+  server = params => {
+    this.props.dispatch({
+      type: `welcome/init`,
+    });
+  };
   render() {
     return (
       <div className={styles['container']}>
         <Button onClick={this.showModal}>test</Button>
+        <Button onClick={this.server}>service</Button>
         <Modal
           visible={this.state.visible}
           transparent
@@ -42,12 +48,18 @@ class Welcome extends Component {
           // wrapProps={{ onTouchStart: this.onWrapTouchStart }}
         >
           <div style={{ height: 100, overflow: 'scroll' }}>
-            scoll content...<br />
-            scoll content...<br />
-            scoll content...<br />
-            scoll content...<br />
-            scoll content...<br />
-            scoll content...<br />
+            scoll content...
+            <br />
+            scoll content...
+            <br />
+            scoll content...
+            <br />
+            scoll content...
+            <br />
+            scoll content...
+            <br />
+            scoll content...
+            <br />
           </div>
         </Modal>
       </div>
@@ -55,4 +67,8 @@ class Welcome extends Component {
   }
 }
 
-export default Welcome;
+function mapStateToProps({ welcome }) {
+  return { welcome };
+}
+
+export default connect(mapStateToProps)(Welcome);
