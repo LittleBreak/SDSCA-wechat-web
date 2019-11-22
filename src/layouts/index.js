@@ -1,9 +1,9 @@
 import styles from './index.less';
-
+import { Header } from '@/components';
 function BasicLayout(props) {
   return (
-    <div className={styles.normal}>
-      <h1 className={styles.title}>山东省干细胞学会</h1>
+    <div className={styles.container}>
+      <Header></Header>
       {props.children}
     </div>
   );
